@@ -1,0 +1,1352 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-ajv/ajv/lib/dotjs/validate.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-ajv">npmtest-ajv (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-ajv/ajv/lib/dotjs/validate.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">3.52% <small>(9 / 256)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">2.8% <small>(6 / 214)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 3)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">3.56% <small>(9 / 253)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric">6 statements, 6 branches</span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-ajv/ajv/lib/dotjs/</a> &#187; validate.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+module.exports = <span class="fstat-no" title="function not covered" >function generate_validate(it, $keyword) {</span>
+<span class="cstat-no" title="statement not covered" >  var out = '';</span>
+<span class="cstat-no" title="statement not covered" >  var $async = it.schema.$async === true;</span>
+<span class="cstat-no" title="statement not covered" >  if (it.isTop) {</span>
+<span class="cstat-no" title="statement not covered" >    var $top = it.isTop,</span>
+      $lvl = it.level = 0,
+      $dataLvl = it.dataLevel = 0,
+      $data = 'data';
+<span class="cstat-no" title="statement not covered" >    it.rootId = it.resolve.fullPath(it.root.schema.id);</span>
+<span class="cstat-no" title="statement not covered" >    it.baseId = it.baseId || it.rootId;</span>
+<span class="cstat-no" title="statement not covered" >    if ($async) {</span>
+<span class="cstat-no" title="statement not covered" >      it.async = true;</span>
+<span class="cstat-no" title="statement not covered" >      var $es7 = it.opts.async == 'es7';</span>
+<span class="cstat-no" title="statement not covered" >      it.yieldAwait = $es7 ? 'await' : 'yield';</span>
+    }
+<span class="cstat-no" title="statement not covered" >    delete it.isTop;</span>
+<span class="cstat-no" title="statement not covered" >    it.dataPathArr = [undefined];</span>
+<span class="cstat-no" title="statement not covered" >    out += ' var validate = ';</span>
+<span class="cstat-no" title="statement not covered" >    if ($async) {</span>
+<span class="cstat-no" title="statement not covered" >      if ($es7) {</span>
+<span class="cstat-no" title="statement not covered" >        out += ' (async function ';</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        if (it.opts.async == 'co*') {</span>
+<span class="cstat-no" title="statement not covered" >          out += 'co.wrap';</span>
+        }
+<span class="cstat-no" title="statement not covered" >        out += '(function* ';</span>
+      }
+    } else {
+<span class="cstat-no" title="statement not covered" >      out += ' (function ';</span>
+    }
+<span class="cstat-no" title="statement not covered" >    out += ' (data, dataPath, parentData, parentDataProperty, rootData) { \'use strict\'; var vErrors = null; ';</span>
+<span class="cstat-no" title="statement not covered" >    out += ' var errors = 0;     ';</span>
+<span class="cstat-no" title="statement not covered" >    out += ' if (rootData === undefined) rootData = data;';</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    var $lvl = it.level,</span>
+      $dataLvl = it.dataLevel,
+      $data = 'data' + ($dataLvl || '');
+<span class="cstat-no" title="statement not covered" >    if (it.schema.id) <span class="cstat-no" title="statement not covered" >it.baseId = it.resolve.url(it.baseId, it.schema.id);</span></span>
+<span class="cstat-no" title="statement not covered" >    if ($async &amp;&amp; !it.async) <span class="cstat-no" title="statement not covered" >throw new Error('async schema in sync schema');</span></span>
+<span class="cstat-no" title="statement not covered" >    out += ' var errs_' + ($lvl) + ' = errors;';</span>
+  }
+<span class="cstat-no" title="statement not covered" >  var $valid = 'valid' + $lvl,</span>
+    $breakOnError = !it.opts.allErrors,
+    $closingBraces1 = '',
+    $closingBraces2 = '';
+<span class="cstat-no" title="statement not covered" >  var $typeSchema = it.schema.type,</span>
+    $typeIsArray = Array.isArray($typeSchema);
+<span class="cstat-no" title="statement not covered" >  if ($typeSchema &amp;&amp; it.opts.coerceTypes) {</span>
+<span class="cstat-no" title="statement not covered" >    var $coerceToTypes = it.util.coerceToTypes(it.opts.coerceTypes, $typeSchema);</span>
+<span class="cstat-no" title="statement not covered" >    if ($coerceToTypes) {</span>
+<span class="cstat-no" title="statement not covered" >      var $schemaPath = it.schemaPath + '.type',</span>
+        $errSchemaPath = it.errSchemaPath + '/type',
+        $method = $typeIsArray ? 'checkDataTypes' : 'checkDataType';
+<span class="cstat-no" title="statement not covered" >      out += ' if (' + (it.util[$method]($typeSchema, $data, true)) + ') {  ';</span>
+<span class="cstat-no" title="statement not covered" >      var $dataType = 'dataType' + $lvl,</span>
+        $coerced = 'coerced' + $lvl;
+<span class="cstat-no" title="statement not covered" >      out += ' var ' + ($dataType) + ' = typeof ' + ($data) + '; ';</span>
+<span class="cstat-no" title="statement not covered" >      if (it.opts.coerceTypes == 'array') {</span>
+<span class="cstat-no" title="statement not covered" >        out += ' if (' + ($dataType) + ' == \'object\' &amp;&amp; Array.isArray(' + ($data) + ')) ' + ($dataType) + ' = \'array\'; ';</span>
+      }
+<span class="cstat-no" title="statement not covered" >      out += ' var ' + ($coerced) + ' = undefined; ';</span>
+<span class="cstat-no" title="statement not covered" >      var $bracesCoercion = '';</span>
+<span class="cstat-no" title="statement not covered" >      var arr1 = $coerceToTypes;</span>
+<span class="cstat-no" title="statement not covered" >      if (arr1) {</span>
+<span class="cstat-no" title="statement not covered" >        var $type, $i = -1,</span>
+          l1 = arr1.length - 1;
+<span class="cstat-no" title="statement not covered" >        while ($i &lt; l1) {</span>
+<span class="cstat-no" title="statement not covered" >          $type = arr1[$i += 1];</span>
+<span class="cstat-no" title="statement not covered" >          if ($i) {</span>
+<span class="cstat-no" title="statement not covered" >            out += ' if (' + ($coerced) + ' === undefined) { ';</span>
+<span class="cstat-no" title="statement not covered" >            $bracesCoercion += '}';</span>
+          }
+<span class="cstat-no" title="statement not covered" >          if (it.opts.coerceTypes == 'array' &amp;&amp; $type != 'array') {</span>
+<span class="cstat-no" title="statement not covered" >            out += ' if (' + ($dataType) + ' == \'array\' &amp;&amp; ' + ($data) + '.length == 1) { ' + ($coerced) + ' = ' + ($data) + ' = ' + ($data) + '[0]; ' + ($dataType) + ' = typeof ' + ($data) + ';  } ';</span>
+          }
+<span class="cstat-no" title="statement not covered" >          if ($type == 'string') {</span>
+<span class="cstat-no" title="statement not covered" >            out += ' if (' + ($dataType) + ' == \'number\' || ' + ($dataType) + ' == \'boolean\') ' + ($coerced) + ' = \'\' + ' + ($data) + '; else if (' + ($data) + ' === null) ' + ($coerced) + ' = \'\'; ';</span>
+          } else <span class="cstat-no" title="statement not covered" >if ($type == 'number' || $type == 'integer') {</span>
+<span class="cstat-no" title="statement not covered" >            out += ' if (' + ($dataType) + ' == \'boolean\' || ' + ($data) + ' === null || (' + ($dataType) + ' == \'string\' &amp;&amp; ' + ($data) + ' &amp;&amp; ' + ($data) + ' == +' + ($data) + ' ';</span>
+<span class="cstat-no" title="statement not covered" >            if ($type == 'integer') {</span>
+<span class="cstat-no" title="statement not covered" >              out += ' &amp;&amp; !(' + ($data) + ' % 1)';</span>
+            }
+<span class="cstat-no" title="statement not covered" >            out += ')) ' + ($coerced) + ' = +' + ($data) + '; ';</span>
+          } else <span class="cstat-no" title="statement not covered" >if ($type == 'boolean') {</span>
+<span class="cstat-no" title="statement not covered" >            out += ' if (' + ($data) + ' === \'false\' || ' + ($data) + ' === 0 || ' + ($data) + ' === null) ' + ($coerced) + ' = false; else if (' + ($data) + ' === \'true\' || ' + ($data) + ' === 1) ' + ($coerced) + ' = true; ';</span>
+          } else <span class="cstat-no" title="statement not covered" >if ($type == 'null') {</span>
+<span class="cstat-no" title="statement not covered" >            out += ' if (' + ($data) + ' === \'\' || ' + ($data) + ' === 0 || ' + ($data) + ' === false) ' + ($coerced) + ' = null; ';</span>
+          } else <span class="cstat-no" title="statement not covered" >if (it.opts.coerceTypes == 'array' &amp;&amp; $type == 'array') {</span>
+<span class="cstat-no" title="statement not covered" >            out += ' if (' + ($dataType) + ' == \'string\' || ' + ($dataType) + ' == \'number\' || ' + ($dataType) + ' == \'boolean\' || ' + ($data) + ' == null) ' + ($coerced) + ' = [' + ($data) + ']; ';</span>
+          }
+        }
+      }
+<span class="cstat-no" title="statement not covered" >      out += ' ' + ($bracesCoercion) + ' if (' + ($coerced) + ' === undefined) {   ';</span>
+<span class="cstat-no" title="statement not covered" >      var $$outStack = $$outStack || [];</span>
+<span class="cstat-no" title="statement not covered" >      $$outStack.push(out);</span>
+<span class="cstat-no" title="statement not covered" >      out = ''; </span>/* istanbul ignore else */
+<span class="cstat-no" title="statement not covered" >      if (it.createErrors !== false) {</span>
+<span class="cstat-no" title="statement not covered" >        out += ' { keyword: \'' + ('type') + '\' , dataPath: (dataPath || \'\') + ' + (it.errorPath) + ' , schemaPath: ' + (it.util.toQuotedString($errSchemaPath)) + ' , params: { type: \'';</span>
+<span class="cstat-no" title="statement not covered" >        if ($typeIsArray) {</span>
+<span class="cstat-no" title="statement not covered" >          out += '' + ($typeSchema.join(","));</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          out += '' + ($typeSchema);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        out += '\' } ';</span>
+<span class="cstat-no" title="statement not covered" >        if (it.opts.messages !== false) {</span>
+<span class="cstat-no" title="statement not covered" >          out += ' , message: \'should be ';</span>
+<span class="cstat-no" title="statement not covered" >          if ($typeIsArray) {</span>
+<span class="cstat-no" title="statement not covered" >            out += '' + ($typeSchema.join(","));</span>
+          } else {
+<span class="cstat-no" title="statement not covered" >            out += '' + ($typeSchema);</span>
+          }
+<span class="cstat-no" title="statement not covered" >          out += '\' ';</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (it.opts.verbose) {</span>
+<span class="cstat-no" title="statement not covered" >          out += ' , schema: validate.schema' + ($schemaPath) + ' , parentSchema: validate.schema' + (it.schemaPath) + ' , data: ' + ($data) + ' ';</span>
+        }
+<span class="cstat-no" title="statement not covered" >        out += ' } ';</span>
+      } else {
+<span class="cstat-skip" title="statement not covered" >        out += ' {} ';</span>
+      }
+<span class="cstat-no" title="statement not covered" >      var __err = out;</span>
+<span class="cstat-no" title="statement not covered" >      out = $$outStack.pop();</span>
+<span class="cstat-no" title="statement not covered" >      if (!it.compositeRule &amp;&amp; $breakOnError) { /* istanbul ignore if */</span>
+<span class="cstat-no" title="statement not covered" >        if (it.async) {</span>
+<span class="cstat-skip" title="statement not covered" >          out += ' throw new ValidationError([' + (__err) + ']); ';</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          out += ' validate.errors = [' + (__err) + ']; return false; ';</span>
+        }
+      } else {
+<span class="cstat-no" title="statement not covered" >        out += ' var err = ' + (__err) + ';  if (vErrors === null) vErrors = [err]; else vErrors.push(err); errors++; ';</span>
+      }
+<span class="cstat-no" title="statement not covered" >      out += ' } else {  ';</span>
+<span class="cstat-no" title="statement not covered" >      var $parentData = $dataLvl ? 'data' + (($dataLvl - 1) || '') : 'parentData',</span>
+        $parentDataProperty = $dataLvl ? it.dataPathArr[$dataLvl] : 'parentDataProperty';
+<span class="cstat-no" title="statement not covered" >      out += ' ' + ($data) + ' = ' + ($coerced) + '; ';</span>
+<span class="cstat-no" title="statement not covered" >      if (!$dataLvl) {</span>
+<span class="cstat-no" title="statement not covered" >        out += 'if (' + ($parentData) + ' !== undefined)';</span>
+      }
+<span class="cstat-no" title="statement not covered" >      out += ' ' + ($parentData) + '[' + ($parentDataProperty) + '] = ' + ($coerced) + '; } } ';</span>
+    }
+  }
+<span class="cstat-no" title="statement not covered" >  var $refKeywords;</span>
+<span class="cstat-no" title="statement not covered" >  if (it.schema.$ref &amp;&amp; ($refKeywords = it.util.schemaHasRulesExcept(it.schema, it.RULES.all, '$ref'))) {</span>
+<span class="cstat-no" title="statement not covered" >    if (it.opts.extendRefs == 'fail') {</span>
+<span class="cstat-no" title="statement not covered" >      throw new Error('$ref: validation keywords used in schema at path "' + it.errSchemaPath + '"');</span>
+    } else <span class="cstat-no" title="statement not covered" >if (it.opts.extendRefs == 'ignore') {</span>
+<span class="cstat-no" title="statement not covered" >      $refKeywords = false;</span>
+<span class="cstat-no" title="statement not covered" >      console.log('$ref: keywords ignored in schema at path "' + it.errSchemaPath + '"');</span>
+    } else <span class="cstat-no" title="statement not covered" >if (it.opts.extendRefs !== true) {</span>
+<span class="cstat-no" title="statement not covered" >      console.log('$ref: all keywords used in schema at path "' + it.errSchemaPath + '". It will change in the next major version, see issue #260. Use option { extendRefs: true } to keep current behaviour');</span>
+    }
+  }
+<span class="cstat-no" title="statement not covered" >  if (it.schema.$ref &amp;&amp; !$refKeywords) {</span>
+<span class="cstat-no" title="statement not covered" >    out += ' ' + (it.RULES.all.$ref.code(it, '$ref')) + ' ';</span>
+<span class="cstat-no" title="statement not covered" >    if ($breakOnError) {</span>
+<span class="cstat-no" title="statement not covered" >      out += ' } if (errors === ';</span>
+<span class="cstat-no" title="statement not covered" >      if ($top) {</span>
+<span class="cstat-no" title="statement not covered" >        out += '0';</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        out += 'errs_' + ($lvl);</span>
+      }
+<span class="cstat-no" title="statement not covered" >      out += ') { ';</span>
+<span class="cstat-no" title="statement not covered" >      $closingBraces2 += '}';</span>
+    }
+  } else {
+<span class="cstat-no" title="statement not covered" >    var arr2 = it.RULES;</span>
+<span class="cstat-no" title="statement not covered" >    if (arr2) {</span>
+<span class="cstat-no" title="statement not covered" >      var $rulesGroup, i2 = -1,</span>
+        l2 = arr2.length - 1;
+<span class="cstat-no" title="statement not covered" >      while (i2 &lt; l2) {</span>
+<span class="cstat-no" title="statement not covered" >        $rulesGroup = arr2[i2 += 1];</span>
+<span class="cstat-no" title="statement not covered" >        if ($shouldUseGroup($rulesGroup)) {</span>
+<span class="cstat-no" title="statement not covered" >          if ($rulesGroup.type) {</span>
+<span class="cstat-no" title="statement not covered" >            out += ' if (' + (it.util.checkDataType($rulesGroup.type, $data)) + ') { ';</span>
+          }
+<span class="cstat-no" title="statement not covered" >          if (it.opts.useDefaults &amp;&amp; !it.compositeRule) {</span>
+<span class="cstat-no" title="statement not covered" >            if ($rulesGroup.type == 'object' &amp;&amp; it.schema.properties) {</span>
+<span class="cstat-no" title="statement not covered" >              var $schema = it.schema.properties,</span>
+                $schemaKeys = Object.keys($schema);
+<span class="cstat-no" title="statement not covered" >              var arr3 = $schemaKeys;</span>
+<span class="cstat-no" title="statement not covered" >              if (arr3) {</span>
+<span class="cstat-no" title="statement not covered" >                var $propertyKey, i3 = -1,</span>
+                  l3 = arr3.length - 1;
+<span class="cstat-no" title="statement not covered" >                while (i3 &lt; l3) {</span>
+<span class="cstat-no" title="statement not covered" >                  $propertyKey = arr3[i3 += 1];</span>
+<span class="cstat-no" title="statement not covered" >                  var $sch = $schema[$propertyKey];</span>
+<span class="cstat-no" title="statement not covered" >                  if ($sch.default !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >                    var $passData = $data + it.util.getProperty($propertyKey);</span>
+<span class="cstat-no" title="statement not covered" >                    out += '  if (' + ($passData) + ' === undefined) ' + ($passData) + ' = ';</span>
+<span class="cstat-no" title="statement not covered" >                    if (it.opts.useDefaults == 'shared') {</span>
+<span class="cstat-no" title="statement not covered" >                      out += ' ' + (it.useDefault($sch.default)) + ' ';</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                      out += ' ' + (JSON.stringify($sch.default)) + ' ';</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    out += '; ';</span>
+                  }
+                }
+              }
+            } else <span class="cstat-no" title="statement not covered" >if ($rulesGroup.type == 'array' &amp;&amp; Array.isArray(it.schema.items)) {</span>
+<span class="cstat-no" title="statement not covered" >              var arr4 = it.schema.items;</span>
+<span class="cstat-no" title="statement not covered" >              if (arr4) {</span>
+<span class="cstat-no" title="statement not covered" >                var $sch, $i = -1,</span>
+                  l4 = arr4.length - 1;
+<span class="cstat-no" title="statement not covered" >                while ($i &lt; l4) {</span>
+<span class="cstat-no" title="statement not covered" >                  $sch = arr4[$i += 1];</span>
+<span class="cstat-no" title="statement not covered" >                  if ($sch.default !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >                    var $passData = $data + '[' + $i + ']';</span>
+<span class="cstat-no" title="statement not covered" >                    out += '  if (' + ($passData) + ' === undefined) ' + ($passData) + ' = ';</span>
+<span class="cstat-no" title="statement not covered" >                    if (it.opts.useDefaults == 'shared') {</span>
+<span class="cstat-no" title="statement not covered" >                      out += ' ' + (it.useDefault($sch.default)) + ' ';</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                      out += ' ' + (JSON.stringify($sch.default)) + ' ';</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    out += '; ';</span>
+                  }
+                }
+              }
+            }
+          }
+<span class="cstat-no" title="statement not covered" >          var arr5 = $rulesGroup.rules;</span>
+<span class="cstat-no" title="statement not covered" >          if (arr5) {</span>
+<span class="cstat-no" title="statement not covered" >            var $rule, i5 = -1,</span>
+              l5 = arr5.length - 1;
+<span class="cstat-no" title="statement not covered" >            while (i5 &lt; l5) {</span>
+<span class="cstat-no" title="statement not covered" >              $rule = arr5[i5 += 1];</span>
+<span class="cstat-no" title="statement not covered" >              if ($shouldUseRule($rule)) {</span>
+<span class="cstat-no" title="statement not covered" >                out += ' ' + ($rule.code(it, $rule.keyword)) + ' ';</span>
+<span class="cstat-no" title="statement not covered" >                if ($breakOnError) {</span>
+<span class="cstat-no" title="statement not covered" >                  $closingBraces1 += '}';</span>
+                }
+              }
+            }
+          }
+<span class="cstat-no" title="statement not covered" >          if ($breakOnError) {</span>
+<span class="cstat-no" title="statement not covered" >            out += ' ' + ($closingBraces1) + ' ';</span>
+<span class="cstat-no" title="statement not covered" >            $closingBraces1 = '';</span>
+          }
+<span class="cstat-no" title="statement not covered" >          if ($rulesGroup.type) {</span>
+<span class="cstat-no" title="statement not covered" >            out += ' } ';</span>
+<span class="cstat-no" title="statement not covered" >            if ($typeSchema &amp;&amp; $typeSchema === $rulesGroup.type) {</span>
+<span class="cstat-no" title="statement not covered" >              var $typeChecked = true;</span>
+<span class="cstat-no" title="statement not covered" >              out += ' else { ';</span>
+<span class="cstat-no" title="statement not covered" >              var $schemaPath = it.schemaPath + '.type',</span>
+                $errSchemaPath = it.errSchemaPath + '/type';
+<span class="cstat-no" title="statement not covered" >              var $$outStack = $$outStack || [];</span>
+<span class="cstat-no" title="statement not covered" >              $$outStack.push(out);</span>
+<span class="cstat-no" title="statement not covered" >              out = ''; </span>/* istanbul ignore else */
+<span class="cstat-no" title="statement not covered" >              if (it.createErrors !== false) {</span>
+<span class="cstat-no" title="statement not covered" >                out += ' { keyword: \'' + ('type') + '\' , dataPath: (dataPath || \'\') + ' + (it.errorPath) + ' , schemaPath: ' + (it.util.toQuotedString($errSchemaPath)) + ' , params: { type: \'';</span>
+<span class="cstat-no" title="statement not covered" >                if ($typeIsArray) {</span>
+<span class="cstat-no" title="statement not covered" >                  out += '' + ($typeSchema.join(","));</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                  out += '' + ($typeSchema);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                out += '\' } ';</span>
+<span class="cstat-no" title="statement not covered" >                if (it.opts.messages !== false) {</span>
+<span class="cstat-no" title="statement not covered" >                  out += ' , message: \'should be ';</span>
+<span class="cstat-no" title="statement not covered" >                  if ($typeIsArray) {</span>
+<span class="cstat-no" title="statement not covered" >                    out += '' + ($typeSchema.join(","));</span>
+                  } else {
+<span class="cstat-no" title="statement not covered" >                    out += '' + ($typeSchema);</span>
+                  }
+<span class="cstat-no" title="statement not covered" >                  out += '\' ';</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (it.opts.verbose) {</span>
+<span class="cstat-no" title="statement not covered" >                  out += ' , schema: validate.schema' + ($schemaPath) + ' , parentSchema: validate.schema' + (it.schemaPath) + ' , data: ' + ($data) + ' ';</span>
+                }
+<span class="cstat-no" title="statement not covered" >                out += ' } ';</span>
+              } else {
+<span class="cstat-skip" title="statement not covered" >                out += ' {} ';</span>
+              }
+<span class="cstat-no" title="statement not covered" >              var __err = out;</span>
+<span class="cstat-no" title="statement not covered" >              out = $$outStack.pop();</span>
+<span class="cstat-no" title="statement not covered" >              if (!it.compositeRule &amp;&amp; $breakOnError) { /* istanbul ignore if */</span>
+<span class="cstat-no" title="statement not covered" >                if (it.async) {</span>
+<span class="cstat-skip" title="statement not covered" >                  out += ' throw new ValidationError([' + (__err) + ']); ';</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                  out += ' validate.errors = [' + (__err) + ']; return false; ';</span>
+                }
+              } else {
+<span class="cstat-no" title="statement not covered" >                out += ' var err = ' + (__err) + ';  if (vErrors === null) vErrors = [err]; else vErrors.push(err); errors++; ';</span>
+              }
+<span class="cstat-no" title="statement not covered" >              out += ' } ';</span>
+            }
+          }
+<span class="cstat-no" title="statement not covered" >          if ($breakOnError) {</span>
+<span class="cstat-no" title="statement not covered" >            out += ' if (errors === ';</span>
+<span class="cstat-no" title="statement not covered" >            if ($top) {</span>
+<span class="cstat-no" title="statement not covered" >              out += '0';</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >              out += 'errs_' + ($lvl);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            out += ') { ';</span>
+<span class="cstat-no" title="statement not covered" >            $closingBraces2 += '}';</span>
+          }
+        }
+      }
+    }
+  }
+<span class="cstat-no" title="statement not covered" >  if ($typeSchema &amp;&amp; !$typeChecked &amp;&amp; !(it.opts.coerceTypes &amp;&amp; $coerceToTypes)) {</span>
+<span class="cstat-no" title="statement not covered" >    var $schemaPath = it.schemaPath + '.type',</span>
+      $errSchemaPath = it.errSchemaPath + '/type',
+      $method = $typeIsArray ? 'checkDataTypes' : 'checkDataType';
+<span class="cstat-no" title="statement not covered" >    out += ' if (' + (it.util[$method]($typeSchema, $data, true)) + ') {   ';</span>
+<span class="cstat-no" title="statement not covered" >    var $$outStack = $$outStack || [];</span>
+<span class="cstat-no" title="statement not covered" >    $$outStack.push(out);</span>
+<span class="cstat-no" title="statement not covered" >    out = ''; </span>/* istanbul ignore else */
+<span class="cstat-no" title="statement not covered" >    if (it.createErrors !== false) {</span>
+<span class="cstat-no" title="statement not covered" >      out += ' { keyword: \'' + ('type') + '\' , dataPath: (dataPath || \'\') + ' + (it.errorPath) + ' , schemaPath: ' + (it.util.toQuotedString($errSchemaPath)) + ' , params: { type: \'';</span>
+<span class="cstat-no" title="statement not covered" >      if ($typeIsArray) {</span>
+<span class="cstat-no" title="statement not covered" >        out += '' + ($typeSchema.join(","));</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        out += '' + ($typeSchema);</span>
+      }
+<span class="cstat-no" title="statement not covered" >      out += '\' } ';</span>
+<span class="cstat-no" title="statement not covered" >      if (it.opts.messages !== false) {</span>
+<span class="cstat-no" title="statement not covered" >        out += ' , message: \'should be ';</span>
+<span class="cstat-no" title="statement not covered" >        if ($typeIsArray) {</span>
+<span class="cstat-no" title="statement not covered" >          out += '' + ($typeSchema.join(","));</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          out += '' + ($typeSchema);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        out += '\' ';</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (it.opts.verbose) {</span>
+<span class="cstat-no" title="statement not covered" >        out += ' , schema: validate.schema' + ($schemaPath) + ' , parentSchema: validate.schema' + (it.schemaPath) + ' , data: ' + ($data) + ' ';</span>
+      }
+<span class="cstat-no" title="statement not covered" >      out += ' } ';</span>
+    } else {
+<span class="cstat-skip" title="statement not covered" >      out += ' {} ';</span>
+    }
+<span class="cstat-no" title="statement not covered" >    var __err = out;</span>
+<span class="cstat-no" title="statement not covered" >    out = $$outStack.pop();</span>
+<span class="cstat-no" title="statement not covered" >    if (!it.compositeRule &amp;&amp; $breakOnError) { /* istanbul ignore if */</span>
+<span class="cstat-no" title="statement not covered" >      if (it.async) {</span>
+<span class="cstat-skip" title="statement not covered" >        out += ' throw new ValidationError([' + (__err) + ']); ';</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        out += ' validate.errors = [' + (__err) + ']; return false; ';</span>
+      }
+    } else {
+<span class="cstat-no" title="statement not covered" >      out += ' var err = ' + (__err) + ';  if (vErrors === null) vErrors = [err]; else vErrors.push(err); errors++; ';</span>
+    }
+<span class="cstat-no" title="statement not covered" >    out += ' }';</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if ($breakOnError) {</span>
+<span class="cstat-no" title="statement not covered" >    out += ' ' + ($closingBraces2) + ' ';</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if ($top) {</span>
+<span class="cstat-no" title="statement not covered" >    if ($async) {</span>
+<span class="cstat-no" title="statement not covered" >      out += ' if (errors === 0) return true;           ';</span>
+<span class="cstat-no" title="statement not covered" >      out += ' else throw new ValidationError(vErrors); ';</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      out += ' validate.errors = vErrors; ';</span>
+<span class="cstat-no" title="statement not covered" >      out += ' return errors === 0;       ';</span>
+    }
+<span class="cstat-no" title="statement not covered" >    out += ' }); return validate;';</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    out += ' var ' + ($valid) + ' = errors === errs_' + ($lvl) + ';';</span>
+  }
+<span class="cstat-no" title="statement not covered" >  out = it.util.cleanUpCode(out);</span>
+<span class="cstat-no" title="statement not covered" >  if ($top &amp;&amp; $breakOnError) {</span>
+<span class="cstat-no" title="statement not covered" >    out = it.util.cleanUpVarErrors(out, $async);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function $shouldUseGroup($rulesGroup) {</span>
+<span class="cstat-no" title="statement not covered" >    for (var i = 0; i &lt; $rulesGroup.rules.length; i++)</span>
+<span class="cstat-no" title="statement not covered" >      if ($shouldUseRule($rulesGroup.rules[i])) <span class="cstat-no" title="statement not covered" >return true;</span></span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function $shouldUseRule($rule) {</span>
+<span class="cstat-no" title="statement not covered" >    return it.schema[$rule.keyword] !== undefined || ($rule.keyword == 'properties' &amp;&amp; (it.schema.additionalProperties === false || typeof it.schema.additionalProperties == 'object' || (it.schema.patternProperties &amp;&amp; Object.keys(it.schema.patternProperties).length) || (it.opts.v5 &amp;&amp; it.schema.patternGroups &amp;&amp; Object.keys(it.schema.patternGroups).length)));</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return out;</span>
+}
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 11 2017 17:41:55 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
