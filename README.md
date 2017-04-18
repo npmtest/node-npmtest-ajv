@@ -1,7 +1,10 @@
-# test coverage for  [ajv (v4.11.6)](https://github.com/epoberezkin/ajv)  [![npm package](https://img.shields.io/npm/v/npmtest-ajv.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-ajv) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-ajv.svg)](https://travis-ci.org/npmtest/node-npmtest-ajv)
+# npmtest-ajv
+
+#### test coverage for  [ajv (v5.0.0)](https://github.com/epoberezkin/ajv)  [![npm package](https://img.shields.io/npm/v/npmtest-ajv.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-ajv) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-ajv.svg)](https://travis-ci.org/npmtest/node-npmtest-ajv)
+
 #### Another JSON Schema Validator
 
-[![NPM](https://nodei.co/npm/ajv.png?downloads=true)](https://www.npmjs.com/package/ajv)
+[![NPM](https://nodei.co/npm/ajv.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/ajv)
 
 | git-branch : | [alpha](https://github.com/npmtest/node-npmtest-ajv/tree/alpha)|
 |--:|:--|
@@ -9,11 +12,17 @@
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-ajv/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-ajv/build/test-report.html)|
 | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-ajv/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-ajv/tree/gh-pages/build)|
 
-[![istanbul-coverage](https://npmtest.github.io/node-npmtest-ajv/build/screenCapture.buildCustomOrg.browser.coverage.html.png)](https://npmtest.github.io/node-npmtest-ajv/build/coverage.html/index.html)
+- [https://npmtest.github.io/node-npmtest-ajv/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-ajv/build/coverage.html/index.html)
 
-[![test-report](https://npmtest.github.io/node-npmtest-ajv/build/screenCapture.buildCustomOrg.browser.%252Fhome%252Ftravis%252Fbuild%252Fnpmtest%252Fnode-npmtest-ajv%252Ftmp%252Fbuild%252Ftest-report.html.png)](https://npmtest.github.io/node-npmtest-ajv/build/test-report.html)
+[![istanbul-coverage](https://npmtest.github.io/node-npmtest-ajv/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fcoverage.lib.html.png)](https://npmtest.github.io/node-npmtest-ajv/build/coverage.html/index.html)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-ajv/build/screenCapture.buildApidoc.browser.%252Fhome%252Ftravis%252Fbuild%252Fnpmdoc%252Fnode-npmdoc-ajv%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-ajv/build/apidoc.html)
+- [https://npmtest.github.io/node-npmtest-ajv/build/test-report.html](https://npmtest.github.io/node-npmtest-ajv/build/test-report.html)
+
+[![test-report](https://npmtest.github.io/node-npmtest-ajv/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png)](https://npmtest.github.io/node-npmtest-ajv/build/test-report.html)
+
+- [https://npmdoc.github.io/node-npmdoc-ajv/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-ajv/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-ajv/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-ajv/build/apidoc.html)
 
 ![npmPackageListing](https://npmtest.github.io/node-npmtest-ajv/build/screenCapture.npmPackageListing.svg)
 
@@ -38,6 +47,7 @@
     },
     "description": "Another JSON Schema Validator",
     "devDependencies": {
+        "ajv-async": "^0.1.0",
         "bluebird": "^3.1.5",
         "brfs": "^1.4.3",
         "browserify": "^14.1.0",
@@ -50,8 +60,7 @@
         "glob": "^7.0.0",
         "if-node-version": "^1.0.0",
         "js-beautify": "^1.5.6",
-        "jshint": "^2.8.0",
-        "json-schema-test": "^1.1.1",
+        "json-schema-test": "^1.3.0",
         "karma": "^1.0.0",
         "karma-chrome-launcher": "^2.0.0",
         "karma-mocha": "^1.1.1",
@@ -65,13 +74,13 @@
         "regenerator": "0.9.7",
         "require-globify": "^1.3.0",
         "typescript": "^2.0.3",
-        "uglify-js": "^2.6.1",
+        "uglify-js": "2.6.1",
         "watch": "^1.0.0"
     },
     "directories": {},
     "dist": {
-        "shasum": "947e93049790942b2a2d60a8289b28924d39f987",
-        "tarball": "https://registry.npmjs.org/ajv/-/ajv-4.11.6.tgz"
+        "shasum": "a2c717764e8036d15fd227b070ddaf7867ab413a",
+        "tarball": "https://registry.npmjs.org/ajv/-/ajv-5.0.0.tgz"
     },
     "files": [
         "lib/",
@@ -80,7 +89,7 @@
         "LICENSE",
         ".tonic_example.js"
     ],
-    "gitHead": "75653f78b2a7ef338f8a17a51f0c5cdb79e6e5a3",
+    "gitHead": "8641c6b23a04aae7f73ddece698fa598266dc5ae",
     "homepage": "https://github.com/epoberezkin/ajv",
     "keywords": [
         "JSON",
@@ -96,12 +105,10 @@
     "main": "lib/ajv.js",
     "maintainers": [
         {
-            "name": "blakeembrey",
-            "email": "hello@blakeembrey.com"
+            "name": "blakeembrey"
         },
         {
-            "name": "esp",
-            "email": "e.poberezkin@me.com"
+            "name": "esp"
         }
     ],
     "name": "ajv",
@@ -116,7 +123,6 @@
         ]
     },
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/epoberezkin/ajv.git"
@@ -129,22 +135,20 @@
         "bundle-nodent": "node ./scripts/bundle.js nodent",
         "bundle-regenerator": "node ./scripts/bundle.js regenerator",
         "eslint": "if-node-version \">=4\" eslint lib/*.js lib/compile/*.js spec scripts",
-        "jshint": "jshint lib/*.js lib/**/*.js --exclude lib/dotjs/**/*",
         "prepublish": "npm run build && npm run bundle-all",
-        "test": "npm run jshint && npm run eslint && npm run test-ts && npm run build && npm run test-cov && if-node-version 4 npm run test-browser",
+        "test": "npm run eslint && npm run test-ts && npm run build && npm run test-cov && if-node-version 4 npm run test-browser",
         "test-browser": "del-cli .browser && npm run bundle-all && scripts/prepare-tests && npm run test-karma",
         "test-cov": "nyc npm run test-spec",
         "test-debug": "mocha spec/*.spec.js --debug-brk -R spec",
         "test-fast": "AJV_FAST_TEST=true npm run test-spec",
         "test-karma": "karma start --single-run --browsers PhantomJS",
-        "test-spec": "mocha spec/*.spec.js -R spec",
+        "test-spec": "mocha spec/*.spec.js -R spec $(if-node-version 7 echo --harmony-async-await)",
         "test-ts": "tsc --target ES5 --noImplicitAny lib/ajv.d.ts",
         "watch": "watch 'npm run build' ./lib/dot"
     },
     "tonicExampleFilename": ".tonic_example.js",
     "typings": "lib/ajv.d.ts",
-    "version": "4.11.6",
-    "webpack": "dist/ajv.bundle.js"
+    "version": "5.0.0"
 }
 ```
 
