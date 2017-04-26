@@ -1,6 +1,6 @@
 # npmtest-ajv
 
-#### test coverage for  [ajv (v5.0.0)](https://github.com/epoberezkin/ajv)  [![npm package](https://img.shields.io/npm/v/npmtest-ajv.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-ajv) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-ajv.svg)](https://travis-ci.org/npmtest/node-npmtest-ajv)
+#### basic test coverage for  [ajv (v5.0.0)](https://github.com/epoberezkin/ajv)  [![npm package](https://img.shields.io/npm/v/npmtest-ajv.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-ajv) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-ajv.svg)](https://travis-ci.org/npmtest/node-npmtest-ajv)
 
 #### Another JSON Schema Validator
 
@@ -10,7 +10,7 @@
 |--:|:--|
 | coverage : | [![istanbul-coverage](https://npmtest.github.io/node-npmtest-ajv/build/coverage.badge.svg)](https://npmtest.github.io/node-npmtest-ajv/build/coverage.html/index.html)|
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-ajv/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-ajv/build/test-report.html)|
-| build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-ajv/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-ajv/tree/gh-pages/build)|
+| test-server-github : | [![github.com test-server](https://npmtest.github.io/node-npmtest-ajv/GitHub-Mark-32px.png)](https://npmtest.github.io/node-npmtest-ajv/build/app/index.html) | | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-ajv/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-ajv/tree/gh-pages/build)|
 
 - [https://npmtest.github.io/node-npmtest-ajv/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-ajv/build/coverage.html/index.html)
 
@@ -148,7 +148,8 @@
     },
     "tonicExampleFilename": ".tonic_example.js",
     "typings": "lib/ajv.d.ts",
-    "version": "5.0.0"
+    "version": "5.0.0",
+    "bin": {}
 }
 ```
 
